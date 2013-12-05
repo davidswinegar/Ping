@@ -10,7 +10,6 @@ var api_routes = require('./app/routes/api');
 var auth = require('./app/routes/auth');
 var secureInfo = require('./secure_untracked_info')
 var passport = auth.passport;
-var API_PREFIX = '/api/v1';
 
 var app = express();
 
@@ -25,7 +24,7 @@ db.once('open', function () {
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('ssl_port', process.env.SSLPORT || 4000);
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 app.use(auth.redirectSecure(app.get('ssl_port')));
 app.use(express.logger('dev'));
@@ -58,13 +57,13 @@ app.get('/register', auth.ensureNotAuthenticated, routes.registerAcc);
 // authenticated static pages/partial pages
 app.get('/', auth.ensureAuthenticated, routes.index);
 app.get('/main', auth.ensureAuthenticated, partials.main);
-
 // authenticated API endpoints
-app.all(path.join(API_PREFIX, '/*'), auth.ensureAuthenticated, auth.verify_user_session);
-app.get(path.join(API_PREFIX, '/pings/subscribed'), api_routes.get_messages);
-app.post(path.join(API_PREFIX, '/pings'), api_routes.post_message);
-app.get(path.join(API_PREFIX, '/users/current'), api_routes.get_authenticated_user);
-app.put(path.join(API_PREFIX, '/users/current'), api_routes.put_users_friends);
+var API_PREFIX = '/api/v1';
+app.all(API_PREFIX + '/*', auth.ensureAuthenticated, auth.verify_user_session);
+app.get(API_PREFIX + '/pings/subscribed', api_routes.get_messages);
+app.post(API_PREFIX + '/pings', api_routes.post_message);
+app.get(API_PREFIX + '/users/current', api_routes.get_authenticated_user);
+app.put(API_PREFIX + '/users/current', api_routes.put_users_friends);
 
 // Server creation
 var https_server = https.createServer(secureInfo.credentials, app);
