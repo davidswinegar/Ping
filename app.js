@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-app.use(express.session({ secret: secureInfo.secretCookiePhrase, cookie : { secure : true } }));
+app.use(express.cookieSession({ secret: secureInfo.secretCookiePhrase, cookie : { secure : true } }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
