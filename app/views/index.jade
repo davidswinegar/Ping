@@ -1,0 +1,11 @@
+extends angularLayout
+
+block content
+    div(class='container')
+        nav(class='navbar navbar-default' role='navigation')
+            div(class='nav navbar-nav navbar-left')
+                a(class='navbar-brand', href="/") Ping
+            div(class='nav navbar-nav navbar-right')
+                a(class='btn btn-default navbar-btn', href='/logout', target='_self') Log out
+
+        div(ng-view)

@@ -1,0 +1,13 @@
+doctype 5
+html(ng-app='PingApp')
+    head
+        title #{title}
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+        script(src='/javascripts/lib/angular.min.js')
+        script(src='/javascripts/lib/angular-route.min.js')
+        script(src='/javascripts/lib/angular-resource.min.js')
+        script(src='/javascripts/ping-ng-services.js')
+        script(src='/javascripts/ping-ng-app.js')
+    body
+        block content

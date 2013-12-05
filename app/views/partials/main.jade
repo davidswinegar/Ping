@@ -1,0 +1,32 @@
+
+div(class='row')
+    div(class='col-md-6 col-md-offset-1')
+        div
+            h3 Write a message:
+            input(class='form-control', ng-model='newMessage', type='text')
+            div &nbsp
+            button(class='btn btn-primary', ng-click='sendMessage()', ng-disabled='newMessage.length === 0') Send message
+
+            h3 Here are messages from you and your friends:
+            div(class='row')
+                strong(class='col-md-2') User
+                strong(class='col-md-7') Message
+                strong(class='col-md-3') Time
+            div(ng-repeat='message in messages ')
+                div(class='row')
+                    div(class='col-md-2') {{message.user.username}}
+                    div(class='col-md-7') {{message.message}}
+                    div(class='col-md-3') {{message.dateAdded | date:'short'}}
+            div &nbsp
+        div
+            button(class='btn btn-primary', ng-click = 'pushNextMessages()', ng-disabled='finishedUpdates') Show {{updateAmount}} more...
+    div(class='col-md-3 col-md-offset-1')
+        div
+            div Add some friends:
+            input(class='form-control', type='text', ng-model='newFriend')
+            div &nbsp
+            button(class='btn btn-primary', ng-click='addFriend()', ng-disabled='newFriend.length === 0 || user.friends.contains(newFriend)') Add Friend
+            span(ng-show='friendFailed') &nbsp Sorry, user not found.
+            h3 Friends
+            div(ng-repeat='friend in user.friends')
+                div {{friend.username}}
