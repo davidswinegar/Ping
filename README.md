@@ -8,15 +8,15 @@ See the live demo of the app: https://ping.davidwinegar.com. Create an account o
 ### Dependencies:
 * MongoDB installed
 * Node.js and the following npm modules:
-** Express
-** BCrypt
-** Mongoose
-** Jade
-** Passport
-** Passport-Local
+ * Express
+ * BCrypt
+ * Mongoose
+ * Jade
+ * Passport
+ * Passport-Local
 * A file in the root folder called 'secure_untracked_info.js' that contains the following exports:
-** secretCookiePhrase, a string used to secure cookies
-** credentials, an object containing an SSL certificate and private key for the server
+ * secretCookiePhrase, a string used to secure cookies
+ * credentials, an object containing an SSL certificate and private key for the server
 
 ### Deployment:
 * Ensure that MongoDB is running on the default localhost location
