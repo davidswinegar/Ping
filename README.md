@@ -21,6 +21,7 @@ See the live demo of the app: https://ping.davidwinegar.com. Create an account o
 ### Deployment:
 * Ensure that MongoDB is running on the default localhost location
 * Elevate to su ('sudo su') and run 'run.sh' to start the server
+** Note that this runs the server on root - a bad idea, but necessary to access ports 80 and 443. A solution using iptables would be much more secure. Note that this doesn't have much more than toy security (no sanitization of database inputs, for example) and shouldn't be relied upon in an actual production environment.
 
 ### License:
 Licensed under the MIT license : http://opensource.org/licenses/MIT
